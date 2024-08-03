@@ -71,7 +71,11 @@
 					</tbody>
 				</table>
 			</div>
+			<div>
+				{{$companies}}
+			</div>
 
 		</div>
 	</div>
+
 </x-app-layout>

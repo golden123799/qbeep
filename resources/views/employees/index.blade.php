@@ -78,6 +78,9 @@
 				</table>
 			</div>
 
+			<div>
+				{{$employees}}
+			</div>
 		</div>
 	</div>
 </x-app-layout>
