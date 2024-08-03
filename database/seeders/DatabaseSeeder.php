@@ -21,5 +21,14 @@ class DatabaseSeeder extends Seeder
 			'email' => 'admin@admin.com',
 			'password' => Hash::make('password'),
 		]);
+
+		// Generate token for API testing
+		$user = User::find(1);
+		$token = $user->createToken('API Token Name')->plainTextToken;
+		echo "Your API token for testing: $token";
+
+		// Example to test api
+		// curl -X GET "http://your-laravel-app.test/api/companies/1" \
+		// 	-H "Authorization: Bearer YOUR_TOKEN_HERE"
 	}
 }

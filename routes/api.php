@@ -8,4 +8,4 @@ Route::get('/user', function (Request $request) {
 	return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/companies/{company}', [CompanyApiController::class, 'show']);
+Route::get('/companies/{company}', [CompanyApiController::class, 'show'])->middleware('auth:sanctum');
