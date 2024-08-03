@@ -14,14 +14,14 @@
 	<div class="grid gap-6 mb-6 md:grid-cols-2">
 		<div>
 			<label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-			<input type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="First name" value="{{$employee->first_name ?? ''}}" />
+			<input type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="First name" value="{{ old('first_name', $employee->first_name ?? '') }}" />
 			@error('first_name')
 			<div class="text-red-600 text-sm mt-1">{{ $message }}</div>
 			@enderror
 		</div>
 		<div>
 			<label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-			<input type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Last name" value="{{$employee->last_name ?? ''}}" />
+			<input type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Last name" value="{{ old('last_name', $employee->last_name ?? '') }}" />
 			@error('last_name')
 			<div class="text-red-600 text-sm mt-1">{{ $message }}</div>
 			@enderror
@@ -42,12 +42,18 @@
 
 		<div>
 			<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-			<input type="text" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example@example.com" value="{{$employee->email ?? ''}}" />
+			<input type="text" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example@example.com" value="{{ old('email', $employee->email ?? '') }}" />
+			@error('email')
+			<div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+			@enderror
 		</div>
 
 		<div>
 			<label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
-			<input type="tel" id="phone" name="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0123456789" value="{{$employee->phone ?? ''}}" />
+			<input type="tel" id="phone" name="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0123456789" value="{{ old('phone', $employee->phone ?? '') }}" />
+			@error('phone')
+			<div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+			@enderror
 		</div>
 	</div>
 
