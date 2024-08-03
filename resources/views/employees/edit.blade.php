@@ -15,11 +15,17 @@
 					<div class="grid gap-6 mb-6 md:grid-cols-2">
 						<div>
 							<label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-							<input type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="First name" value="{{$employee->first_name}}" required />
+							<input type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="First name" value="{{$employee->first_name}}" />
+							@error('first_name')
+							<div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+							@enderror
 						</div>
 						<div>
 							<label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-							<input type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Last name" value="{{$employee->last_name}}" required />
+							<input type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Last name" value="{{$employee->last_name}}" />
+							@error('last_name')
+							<div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+							@enderror
 						</div>
 
 						<div>
@@ -30,6 +36,9 @@
 								<option value="{{$company->id}}" {{ $company->id == old('company_id', $employee->company_id) ? 'selected' : '' }}>{{$company->name}}</option>
 								@endforeach
 							</select>
+							@error('company_id')
+							<div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+							@enderror
 						</div>
 
 						<div>
