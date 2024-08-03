@@ -20,7 +20,7 @@ This project is a mini-CRM built with Laravel that allows administrators to mana
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/mini-crm.git
+    git clone https://github.com/golden123799/qbeep.git
     cd mini-crm
     ```
 
