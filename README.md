@@ -1,66 +1,124 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mini-CRM Admin Panel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a mini-CRM built with Laravel that allows administrators to manage companies and their employees. It includes basic CRUD functionality, authentication, and API endpoints for interacting with the data.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   [Project Setup](#project-setup)
+-   [Authentication](#authentication)
+-   [Database Setup](#database-setup)
+-   [CRUD Functionality](#crud-functionality)
+-   [Logo Storage](#logo-storage)
+-   [Validation and Pagination](#validation-and-pagination)
+-   [Resource Controllers](#resource-controllers)
+-   [API and Web Routes](#api-and-web-routes)
+-   [Testing](#testing)
+-   [Commands](#commands)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Project Setup
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Clone the repository:
 
-## Learning Laravel
+    ```bash
+    git clone https://github.com/your-username/mini-crm.git
+    cd mini-crm
+    ```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. Install dependencies:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    ```bash
+    composer install
+    npm install
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Set up your environment file:
 
-## Laravel Sponsors
+    Copy `.env.example` to `.env` and configure your environment variables as needed.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    ```bash
+    cp .env.example .env
+    ```
 
-### Premium Partners
+4. Create a symbolic link for storage:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    ```bash
+    php artisan storage:link
+    ```
 
-## Contributing
+## Authentication
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+-   Basic Laravel authentication is implemented to allow administrators to log in.
+-   Registration functionality is disabled.
+-   Use the credentials `admin@admin.com` and `password` for initial login.
 
-## Code of Conduct
+## Database Setup
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Set up the database configuration in the `.env` file. Ensure you have the correct database connection details.
 
-## Security Vulnerabilities
+2. Run the migrations to create the necessary database tables:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```bash
+    php artisan migrate
+    ```
 
-## License
+3. Seed the database with an initial user, api token and sample data:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+    php artisan db:seed
+    ```
+
+    This command creates an initial user with the email `admin@admin.com` and password `password`, along with sample companies and employees.
+
+## CRUD Functionality
+
+-   **Companies**: You can create, read, update, and delete company records.
+-   **Employees**: You can create, read, update, and delete employee records.
+-   Both entities are managed through the admin panel interface.
+
+## Logo Storage
+
+-   Company logos are stored in the `storage/app/public` folder.
+-   Ensure that the logos are accessible from the public domain by creating a symbolic link:
+
+    ```bash
+    php artisan storage:link
+    ```
+
+## Validation and Pagination
+
+-   Laravel's validation functions are used in request classes to validate input data.
+-   Lists of companies and employees are paginated with 10 entries per page.
+
+## Resource Controllers
+
+-   Basic Laravel resource controllers are used with default methods (`index`, `create`, `store`, etc.) for handling CRUD operations.
+
+## API and Web Routes
+
+-   Web routes are used for the admin panel interface.
+-   An API endpoint is available to return a single company with a list of employees, including the `employee_count` attribute.
+
+    Example API endpoint:
+
+    ```
+    GET /api/companies/{company}
+    ```
+
+## Testing
+
+-   Test the API using Postman or any other API testing tool.
+-   Ensure that the API responses include the necessary data and are authenticated properly.
+
+## Commands
+
+-   **Start the Development Server**:
+
+    ```bash
+    php artisan serve
+    ```
+
+-   **Start the Frontend Development Server**:
+
+    ```bash
+    npm run dev
+    ```
